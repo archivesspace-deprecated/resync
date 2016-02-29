@@ -1,0 +1,33 @@
+<%= setup_context :title => "Resync" %>
+
+<div class="row">
+
+    <%= render_aspace_partial :partial => "shared/flash_messages" %>
+
+    <%= form_for @job, :as => "job", :url => {:action => :create}, :html => {:id => "jobfileupload", :class => 'form-horizontal aspace-record-form',  :multipart => true} do |form| %>
+       <%= form_context :job, @job do |form| %> 
+          <div class="record-pane">
+            <%= link_to_help :topic => "job" %>
+            <h2><%= I18n.t("job._frontend.actions.new") %></h2>
+
+            <%= render_aspace_partial :partial => "shared/form_messages", :locals => {:object => @job, :form => form} %>
+            <%= render_aspace_partial :partial => "resources/linker", :locals => { :form => form, :field_label => 'Base Resource Record' }%>
+            <input id="job_jsonmodel_type_" name="resync_job[jsonmodel_type]" type="hidden" value="resync_job">
+            <div class="form-actions">
+              <div class="btn-group">
+                <button type="submit" class="btn btn-primary"><%= I18n.t("job._frontend.actions.save") %></button>
+              </div>
+              <%= link_to I18n.t("actions.cancel"), :back, :class => "btn btn-cancel btn-default" %>
+            </div>
+          </div>
+    <% end %> 
+  <% end %> 
+
+
+  <script>
+    $(function() {
+       $(".linker:not(.initialised)").linker();
+     });
+  </script>
+
+</div>

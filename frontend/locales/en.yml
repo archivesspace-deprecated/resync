@@ -1,0 +1,8 @@
+en:
+  enumerations:
+    job_type:
+      resync_job: Resyncronize Job  
+  plugins:
+    resync:
+      target: Target Resource
+      label: Resyncronize Resources
